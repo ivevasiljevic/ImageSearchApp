@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ImageSearchApp</string>
+
+    <string name="fragment_gallery_no_results">No results found</string>
+    <string name="fragment_gallery_button_retry">Retry</string>
+    <string name="fragment_gallery_results_not_loaded">Results could not be loaded</string>
+
 </resources>
