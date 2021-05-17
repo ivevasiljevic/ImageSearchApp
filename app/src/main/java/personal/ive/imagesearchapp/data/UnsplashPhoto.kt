@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UnsplashPhoto(
-    val id: Int,
+    val id: String,
     val description: String?,
     val urls: UnsplashPhotoUrls,
     val user: UnsplashUser
@@ -25,8 +25,8 @@ data class UnsplashPhoto(
     ) : Parcelable
 
     @Parcelize
-    data class UnsplashUser(val name: String, val userName: String) : Parcelable {
+    data class UnsplashUser(val name: String, val username: String) : Parcelable {
         val attributionUrl: String
-            get() = "https://unsplash.com/$userName?utm_source=ImageSearchApp&utm_medium=referral"
+            get() = "https://unsplash.com/$username?utm_source=ImageSearchApp&utm_medium=referral"
     }
 }
