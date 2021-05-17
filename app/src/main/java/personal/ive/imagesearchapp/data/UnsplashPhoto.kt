@@ -1,7 +1,7 @@
 package personal.ive.imagesearchapp.data
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by ivasil on 5/14/2021
