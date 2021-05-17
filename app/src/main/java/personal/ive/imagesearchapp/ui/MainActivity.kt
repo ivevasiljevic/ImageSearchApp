@@ -1,8 +1,9 @@
-package personal.ive.imagesearchapp
+package personal.ive.imagesearchapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import dagger.hilt.android.AndroidEntryPoint
+import personal.ive.imagesearchapp.R
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

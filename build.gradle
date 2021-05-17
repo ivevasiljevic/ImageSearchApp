@@ -22,6 +22,8 @@ buildscript {
         pagingVersion = '3.0.0'
         retrofitVersion = '2.9.0'
         testExtJunitVersion = '1.1.2'
+        coroutinesVersion = "1.5.0"
+        materialVersion = "1.4.0-beta01"
     }
 
     repositories {
@@ -47,5 +49,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-// Define versions in a single place
