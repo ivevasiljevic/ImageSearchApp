@@ -3,7 +3,7 @@ package personal.ive.imagesearchapp.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import personal.ive.imagesearchapp.api.UnsplashApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,8 +14,8 @@ import javax.inject.Singleton
  */
 
 @Module
-@InstallIn(ApplicationComponent::class)
-object AppModule {
+@InstallIn(SingletonComponent::class)
+internal object AppModule {
 
     @Provides
     @Singleton
