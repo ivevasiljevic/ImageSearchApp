@@ -5,4 +5,6 @@
     <string name="fragment_gallery_button_retry">Retry</string>
     <string name="fragment_gallery_results_not_loaded">Results could not be loaded</string>
 
+    <string name="menu_title_search">Search</string>
+
 </resources>
