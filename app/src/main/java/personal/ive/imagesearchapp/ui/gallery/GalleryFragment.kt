@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -39,15 +40,17 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
         _binding = FragmentGalleryBinding.bind(view)
 
         val unsplashPhotoAdapter = UnsplashPhotoAdapter(this)
-
         binding.apply {
             recyclerView.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(requireContext())
-                adapter = unsplashPhotoAdapter.withLoadStateHeaderAndFooter(
-                    header = UnsplashPhotoLoadStateAdapter(unsplashPhotoAdapter::retry),
-                    footer = UnsplashPhotoLoadStateAdapter(unsplashPhotoAdapter::retry)
-                )
+                adapter = unsplashPhotoAdapter.apply {
+                    stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+                    withLoadStateHeaderAndFooter(
+                        header = UnsplashPhotoLoadStateAdapter(unsplashPhotoAdapter::retry),
+                        footer = UnsplashPhotoLoadStateAdapter(unsplashPhotoAdapter::retry)
+                    )
+                }
             }
             buttonRetry.setOnClickListener {
                 unsplashPhotoAdapter.retry()
