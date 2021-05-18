@@ -3,6 +3,7 @@ package personal.ive.imagesearchapp.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import androidx.paging.liveData
 import personal.ive.imagesearchapp.api.UnsplashApi
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,5 +23,5 @@ class UnsplashRepo @Inject constructor(private val unsplashApi: UnsplashApi) {
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { UnsplashPagingSource(unsplashApi, query) }
-        ).flow
+        ).liveData
 }

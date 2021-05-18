@@ -93,7 +93,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
 
         searchView.onQueryTextSubmitted {
             binding.recyclerView.scrollToPosition(0)
-            viewModel.currentQuery.value = it
+            viewModel.searchPhotos(it)
             searchView.clearFocus()
         }
     }

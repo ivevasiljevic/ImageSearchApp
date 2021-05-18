@@ -21,11 +21,13 @@ class GalleryViewModel @Inject constructor(private val savedState: SavedStateHan
         private const val DEFAULT_QUERY = "cats"
     }
 
-    val currentQuery = savedState.getLiveData(QUERY_KEY, DEFAULT_QUERY)
+    private val currentQuery = savedState.getLiveData(QUERY_KEY, DEFAULT_QUERY)
 
-    private val photosFlow = currentQuery.asFlow().flatMapLatest { queryString ->
+    val photos = currentQuery.switchMap { queryString ->
         unsplashRepo.getSearchResults(queryString).cachedIn(viewModelScope)
     }
 
-    val photos = photosFlow.asLiveData()
+    fun searchPhotos(query: String) {
+        currentQuery.value = query
+    }
 }
