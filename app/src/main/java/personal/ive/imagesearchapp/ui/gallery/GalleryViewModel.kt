@@ -21,7 +21,7 @@ class GalleryViewModel @Inject constructor(private val unsplashRepo: UnsplashRep
         private const val DEFAULT_QUERY = "cats"
     }
 
-    private val currentQuery = MutableStateFlow(DEFAULT_QUERY)
+    val currentQuery = MutableStateFlow(DEFAULT_QUERY)
 
     private val photosFlow = currentQuery.flatMapLatest { queryString ->
         unsplashRepo.getSearchResults(queryString).cachedIn(viewModelScope)
