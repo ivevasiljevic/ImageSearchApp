@@ -9,17 +9,19 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import personal.ive.imagesearchapp.R
+import personal.ive.imagesearchapp.data.UnsplashPhoto
 import personal.ive.imagesearchapp.databinding.FragmentGalleryBinding
 import personal.ive.imagesearchapp.util.onQueryTextSubmitted
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.fragment_gallery) {
+class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapter.OnItemClickListener {
 
     private lateinit var searchView: SearchView
     private val viewModel: GalleryViewModel by viewModels()
@@ -36,7 +38,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
         _binding = FragmentGalleryBinding.bind(view)
 
-        val unsplashPhotoAdapter = UnsplashPhotoAdapter()
+        val unsplashPhotoAdapter = UnsplashPhotoAdapter(this)
 
         binding.apply {
             recyclerView.apply {
@@ -97,5 +99,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         super.onDestroyView()
         searchView.setOnQueryTextListener(null)
         _binding = null
+    }
+
+    override fun onItemClick(photo: UnsplashPhoto) {
+        val action = GalleryFragmentDirections.actionGalleryFragmentToDetailsFragment(photo)
+        findNavController().navigate(action)
     }
 }
